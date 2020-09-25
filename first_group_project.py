@@ -1,60 +1,69 @@
-from lxml import etree
 from bs4 import BeautifulSoup
-from parsel import Selector
-from selenium.webdriver.common.keys import Keys
 import requests
-import getpass
-from selenium import webdriver
-import time
-import random
 
-print("1-start")
-
-url = 'https://www.immoweb.be'
-driver = webdriver.Firefox()
-driver.implicitly_wait(30)
-
-print("2-open browser")
-
-driver.get(url)
-time.sleep(random.uniform(1.0, 2.0))
-
-print("3-get url")
-
-driver.find_element_by_xpath('//*[@id="uc-btn-accept-banner"]').click()
-
-print("4-coockie is clicked")
-
-driver.find_element_by_xpath('//*[@id="searchBoxSubmitButton"]').click()
-
-print("5-search button is clicked")
-
-demo = driver.find_element_by_xpath(
-    '/html/body/div[1]/div[2]/div/main/div/div[2]/div/div[3]/div/div/div[1]/div/ul/li[1]/article/div[1]/h2/a')
-demo2 = driver.find_elements_by_xpath(
-    '/html/body/div[1]/div[2]/div/main/div/div[2]/div/div[3]/div/div/div[1]/div/ul/li')
-links = []
-count = 0
+response = requests.get(
+    'https://www.immoweb.be/nl/zoekertje/huis/te-koop/heverlee/3001/8777400?searchId=5f6dde5f0a186')
+s = BeautifulSoup(response.content, 'lxml')
 k = 0
-prices = []
-for x in demo2:
-    soup = BeautifulSoup(x.get_attribute('outerHTML'), 'lxml')
-    for elem in soup.find_all('a'):
-        url = elem.get('href')
-        r = requests.get(url)
-        soup1 = BeautifulSoup(r.content, 'lxml')
-        counter = 0
-        for elem in soup1.find_all('span', attrs={"class": "sr-only"}):
-            counter += 1
-            if counter == 1 and ("From" not in elem.text):
-                print("price = ", elem.text)
-                prices.append(elem.text)
-                print(k)
-                k += 1
 
-print("links", links)
-print("6-did you get the link?")
-print("the browser will be closed in a few seconds")
-driver.implicitly_wait(30)
-print("Finish - browser is closed")
-# driver.close()
+for script in s.find_all('script'):
+    k += 1
+    if k == 6:
+        index = script.string.index('=')
+        indexNV = []
+        for i in range(0, len(script.string)):
+            if script.string[i] == ";":
+                indexNV.append(i)
+        index2 = indexNV[len(indexNV)-1]
+        null = ""
+        true = True
+        false = False
+        data = eval(script.string[index+1:index2])
+        if data['flags']['isLifeAnnuitySale'] == False:
+            for x in data['flags']:
+                if data['flags'][x]:
+                    print("Type of sale : ", x)
+            for x in data['transaction']['sale']:
+                if x == 'price':
+                    print(x, ":", data['transaction']['sale'][x])
+                elif x == 'isFurnished':
+                    if data['transaction']['sale'][x] == True:
+                        print(x, ": True")
+                    else:
+                        print(x, ": False")
+            for x in data['property']:
+                if x == 'location':
+                    print(x, ":", data['property'][x]['postalCode'])
+                elif x == 'type':
+                    print("Type of property : ", data['property'][x])
+                elif x == 'subtype':
+                    print("subtype of property:", data['property'][x])
+                elif x == 'bedroomCount':
+                    print(x, ":", data['property'][x])
+                elif x == 'netHabitableSurface':
+                    print(x, ":", data['property'][x])
+                elif x == 'kitchen':
+                    print(x, ":", data['property'][x]['type'])
+                elif x == 'fireplaceExists':
+                    print(x, ":", data['property'][x])
+                elif x == 'hasTerrace':
+                    print(x, ":", data['property'][x])
+                elif x == 'terraceSurface':
+                    print(x, ":", data['property'][x])
+                elif x == 'hasGarden':
+                    print(x, ":", data['property'][x])
+                elif x == 'gardenSurface':
+                    print(x, ":", data['property'][x])
+                elif x == 'land':
+                    print("land Surface:", data['property'][x]['surface'])
+                elif x == 'facadeCount':
+                    print(x, ":", data['property'][x])
+                elif x == 'hasSwimmingPool':
+                    if data['property'][x] == True:
+                        print(x, ": True")
+                    else:
+                        print(x, ": False")
+                elif x == 'building':
+                    print(x, ":", data['property'][x]['condition'])
+                elif x == 'basement':  # Surface area of the plot of land
+                    print(x, ":", data['property'][x]['surface'])
