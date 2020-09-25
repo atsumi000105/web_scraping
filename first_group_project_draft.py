@@ -30,39 +30,32 @@ url = 'https://www.immoweb.be/en/search/house/for-sale?countries=BE&page=1&order
 k=0
 links = []
 
-while (i<6):
+while (i<334):
+    if (i ==1):
+        print("5 - Search launched")
     driver.get(url)
-    
     demo2 = driver.find_elements_by_xpath('/html/body/div[1]/div[2]/div/main/div/div[2]/div/div[3]/div/div/div[1]/div/ul')
-    count = 0
     prices = []
     for x in demo2:
         soup = BeautifulSoup(x.get_attribute('outerHTML'), 'lxml')
         for elem in soup.find_all('a'):
             url1 = elem.get('href')
-            links.append(url1)
+            if "www.immoweb.be" in url1:
+                links.append(url1.rstrip("\n"))
         
     previous = i
     i += 1
-    print(url)
     url = url.replace(str(previous),str(i))
-    print(url)
-
 
 print(len(links))
 
-print("links", links)
+with open('links_list.txt', 'w') as f:
+    for link in links:
+        f.write("%s\n" % link)
 
 print("6-did you get the link?")
 print("the browser will be closed in a few seconds")
 driver.implicitly_wait(30)
-print("Finish - browser is closed")
-# driver.close()
 
-print("5-search button is clicked")
-
-
-print(url)
-driver.get(url)
 driver.close()
-
+print("Finish - browser is closed")
