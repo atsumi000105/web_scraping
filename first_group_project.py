@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 
 response = requests.get(
-    'https://www.immoweb.be/nl/zoekertje/huis/te-koop/heverlee/3001/8777400?searchId=5f6dde5f0a186')
+    'https://www.immoweb.be/nl/zoekertje/huis/te-koop/hamoir/4180/8901692?searchId=5f6dde5f0a186')
 s = BeautifulSoup(response.content, 'lxml')
 k = 0
 
@@ -25,7 +25,7 @@ for script in s.find_all('script'):
                     print("Type of sale : ", x)
             for x in data['transaction']['sale']:
                 if x == 'price':
-                    print(x, ":", data['transaction']['sale'][x])
+                    print(x, ":", int(data['transaction']['sale'][x]))
                 elif x == 'isFurnished':
                     if data['transaction']['sale'][x] == True:
                         print(x, ": True")
@@ -39,31 +39,44 @@ for script in s.find_all('script'):
                 elif x == 'subtype':
                     print("subtype of property:", data['property'][x])
                 elif x == 'bedroomCount':
-                    print(x, ":", data['property'][x])
+                    print(x, ":", int(data['property'][x]))
                 elif x == 'netHabitableSurface':
-                    print(x, ":", data['property'][x])
+                    print(x, ":", int(data['property'][x]))
                 elif x == 'kitchen':
-                    print(x, ":", data['property'][x]['type'])
+                    if len(data['property'][x]) > 0:
+                        print(x, " : True")
+                    else:
+                        print(x, " : False")
                 elif x == 'fireplaceExists':
                     print(x, ":", data['property'][x])
                 elif x == 'hasTerrace':
                     print(x, ":", data['property'][x])
-                elif x == 'terraceSurface':
-                    print(x, ":", data['property'][x])
+                    if data['property']['terraceSurface'] > 0:
+                        print("terraceSurface:", int(
+                            data['property']['terraceSurface']))
                 elif x == 'hasGarden':
                     print(x, ":", data['property'][x])
-                elif x == 'gardenSurface':
-                    print(x, ":", data['property'][x])
+                    if data['property']['gardenSurface'] > 0:
+                        print("gardenSurface : ",
+                              int(data['property']['gardenSurface']))
                 elif x == 'land':
-                    print("land Surface:", data['property'][x]['surface'])
+                    if len(data['property'][x]) > 0:
+                        print("land Surface:", int(
+                            data['property'][x]['surface']))
+                    else:
+                        print("land Surface : 0")
                 elif x == 'facadeCount':
-                    print(x, ":", data['property'][x])
+                    print(x, ":", int(data['property'][x]))
                 elif x == 'hasSwimmingPool':
                     if data['property'][x] == True:
                         print(x, ": True")
                     else:
                         print(x, ": False")
                 elif x == 'building':
-                    print(x, ":", data['property'][x]['condition'])
+                    print("State of the building :",
+                          data['property'][x]['condition'])
                 elif x == 'basement':  # Surface area of the plot of land
-                    print(x, ":", data['property'][x]['surface'])
+                    if len(data['property'][x]['surface']) > 0:
+                        print(x, ":", int(data['property'][x]['surface']))
+                    else:
+                        print(x, ": 0")
