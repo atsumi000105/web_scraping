@@ -240,32 +240,35 @@ for link in links:
                                     basement = 0
                     else:
                         skipped += 1
-                    ids.append(id)
-                    type_properties.append(type_of_property)
-                    type_subproperties.append(subtype_of_property)
-                    prices.append(price)
-                    localities.append(location)
-                    netHabitableSurfaces.append(netHabitableSurface)
-                    nr_bedrooms.append(bedroomCount)
-                    kitchen_installeds.append(kitchen)
-                    nr_facades.append(facadeCount)
-                    hasGardens.append(hasGarden)
-                    garden_m2s.append(gardenSurface)
-                    hasTerraces.append(hasTerrace)
-                    terrace_m2s.append(terraceSurface)
-                    furnished_YNs.append(isFurnished)
-                    swimpool_YNs.append(hasSwimmingPool)
-                    type_of_sales.append(type_of_sale)
-                    lands.append(land)
-                    if basement == 0:
-                        if land == 0:
-                            basements.append(netHabitableSurface)
-                        else:
-                            basements.append(land)
+                    if type_of_property == "":
+                        skipped += 1
                     else:
-                        basements.append(basement)
-                    buildings.append(building)
-                    fireplaceExists.append(fireplaceExist)
+                        ids.append(id)
+                        type_properties.append(type_of_property)
+                        type_subproperties.append(subtype_of_property)
+                        prices.append(price)
+                        localities.append(location)
+                        netHabitableSurfaces.append(netHabitableSurface)
+                        nr_bedrooms.append(bedroomCount)
+                        kitchen_installeds.append(kitchen)
+                        nr_facades.append(facadeCount)
+                        hasGardens.append(hasGarden)
+                        garden_m2s.append(gardenSurface)
+                        hasTerraces.append(hasTerrace)
+                        terrace_m2s.append(terraceSurface)
+                        furnished_YNs.append(isFurnished)
+                        swimpool_YNs.append(hasSwimmingPool)
+                        type_of_sales.append(type_of_sale)
+                        lands.append(land)
+                        if basement == 0:
+                            if land == 0:
+                                basements.append(netHabitableSurface)
+                            else:
+                                basements.append(land)
+                        else:
+                            basements.append(basement)
+                        buildings.append(building)
+                        fireplaceExists.append(fireplaceExist)
             pass
         except:
             skipped += 1
