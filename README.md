@@ -30,7 +30,7 @@ The real estate company "ImmoEliza" wants to create a machine learning model to 
 
 **Programming Language: Python
 
-**Collaborators**: Orhan Nurkan[] Christophe Schellinck[https://github.com/christopheschellinck]
+**Collaborators**: Orhan Nurkan[] [Christophe Schellinck](https://github.com/christopheschellinck)
 
 ### Steps
 
