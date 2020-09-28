@@ -28,13 +28,15 @@ The real estate company "ImmoEliza" wants to create a machine learning model to 
 
 **Environment**: Linux
 
-**Programming Language: Python
+**Programming Language**: Python
 
 **Collaborators**: [Orhan Nurkan](https://github.com/orhannurkan) , [Christophe Schellinck](https://github.com/christopheschellinck) and [Davy Nimbona](https://github.com/davymariko)
 
 ### Steps
-
-
+- The first step is to iterate through the 334 search pages and get every link to unique property description and save the links in the file `links_list.txt`(./links_list.txt)
+- We used the selenium package and we retrieved every link through X-Paths
+- The source code can be found in `first_project_draft.py`(./first_group_project_draft.py)
+- The second step was to get every link from the links list file and retrieve every data from every page and save the information in a csv file
 
 
 
