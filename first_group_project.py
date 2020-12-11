@@ -3,8 +3,8 @@ import requests
 import os
 import pandas as pd
 
-path_1 = os.path.abspath('C:/Users/gebruiker/Project/')
-with open(path_1+"/links_list.txt", "r") as f:
+
+with open("Dataset/links_list.txt", "r") as f:
     links = [line.strip() for line in f]
 count = 0
 skipped = 0
@@ -287,10 +287,10 @@ df = pd.DataFrame(
                    'furnished_YN', 'swimpool_YN', 'type_of_sale',
                    'land', 'basement', 'building', 'fireplaceExist'], index=ids)
 try:
-    df.to_csv(path_1+"/dataSet.csv", encoding='utf-8', index=ids)
+    df.to_csv("Dataset/dataSet.csv", encoding='utf-8', index=ids)
     pass
 except PermissionError:
-    df.to_csv(path_1+"/dataSet1.csv", encoding='utf-8', index=ids)
+    df.to_csv("Dataset/dataSet1.csv", encoding='utf-8', index=ids)
     pass
 print("Finished records = ", len(ids), len(type_properties), len(type_subproperties), len(prices), len(localities), len(netHabitableSurfaces), len(nr_bedrooms), len(kitchen_installeds), len(nr_facades),
       len(hasGardens), len(garden_m2s), len(hasTerraces), len(terrace_m2s), len(furnished_YNs), len(swimpool_YNs), len(type_of_sales), len(lands), len(basements), len(buildings), len(fireplaceExists))
