@@ -37,7 +37,7 @@ The real estate company "ImmoEliza" wants to create a machine learning model to 
 ### Steps
 - The first step is to iterate through the 334 search pages and get every link to unique property description and save the links in the file `links_list.txt`
 - We used the selenium package and we retrieved every link through X-Paths
-- The source code can be found in `first_project_draft.py`
+- The source code can be found in `scrap.py`
 - The second step was to get every link from the links list file and retrieve every data from every page and save the information in a csv file
 
 ### Work Repartition
