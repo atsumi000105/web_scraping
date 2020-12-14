@@ -165,3 +165,6 @@ if __name__ == "__main__":
                 count += 1
         except:
             pass
+        # insert values into immo_davy table
+        cursor.execute("INSERT INTO immo VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", test)
+        print("values inserted")
