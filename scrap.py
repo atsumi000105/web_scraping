@@ -4,6 +4,7 @@ import os
 import pandas as pd
 import re
 import sqlite3
+
 def scrap(link):
     try:
         req = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
