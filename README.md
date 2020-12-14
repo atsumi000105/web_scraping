@@ -26,7 +26,7 @@ The real estate company "ImmoEliza" wants to create a machine learning model to 
 
 **Collaboration tool used**: GitHub
 
-**Environment**: Linux
+**Environment**: Linux, Python.3.8
 
 **Editors** : Visual Code, Jupyter Notebook
 
