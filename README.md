@@ -38,11 +38,12 @@ The real estate company "ImmoEliza" wants to create a machine learning model to 
 - The first step is to iterate through the 334 search pages and get every link to unique property description and save the links in the file `links_list.txt`
 - We used the selenium package and we retrieved every link through X-Paths
 - The source code can be found in `scrap.py`
-- The second step was to get every link from the links list file and retrieve every data from every page and save the information in a csv file
+- The second step was to get every link from the links list file and retrieve every data from every page and save the information in a database (davy.db, find it in Database folder)
 
 ### Work Repartition
 - Christophe working on Building a dataframe
 - Orhan is working on accessing all the records through the right X-Path
-- Davy working getting all the page records and filter all the links (in order to get the right ones)                
+- Davy working getting all the page records and filter all the links (in order to get the right ones)
+- Davy working on saving scrapped data in SQLite database
 - Iterate through all the search pages
 - Use the X-Path for next button (Stop the loop if not present)
