@@ -130,7 +130,7 @@ if __name__ == "__main__":
 
     #create table immo_davy
     cursor.execute('CREATE TABLE IF NOT EXISTS immo(immo_code INTEGER, zip_code INTEGER, property_type TEXT,'
-    'price INTEGER, area INTEGER, land_area TEXT, rooms INTEGER, garden_area INTEGER, terrace TEXT'
+    'price INTEGER, area INTEGER, land_area TEXT, rooms INTEGER, garden_area INTEGER, terrace TEXT,'
     'kitchen TEXT, furnished TEXT, pool TEXT)')
 
     # # create table for immo_davy
