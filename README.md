@@ -34,6 +34,12 @@ The real estate company "ImmoEliza" wants to create a machine learning model to 
 
 **Collaborators**: [Orhan Nurkan](https://github.com/orhannurkan) , [Christophe Schellinck](https://github.com/christopheschellinck) and [Davy Nimbona](https://github.com/davymariko)
 
+### Installation
+- To have the environment requirements, run:
+```
+pip install -r requirements.txt
+```
+
 ### Steps
 - The first step is to iterate through the 334 search pages and get every link to unique property description and save the links in the file `links_list.txt`
 - We used the selenium package and we retrieved every link through X-Paths
