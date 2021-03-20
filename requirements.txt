@@ -1,5 +1,5 @@
 requests==2.25.0
-urllib3==1.26.2
+urllib3==1.26.4
 beautifulsoup4==4.9.3
 bs4==0.0.1
 numpy==1.19.4
